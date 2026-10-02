@@ -1,8 +1,8 @@
 # Create a software component type
 
 Create a new SWC type: atomic (Application, Service, Sensor Actuator, …) or a
-composition. The Modellar MCP connector looks up what is needed. The component
-itself is created in the UI for now (see section 3).
+composition. The Modellar MCP connector looks up what is needed and creates it.
+The UI does it when the user asks, or when the MCP route isn't available.
 
 ## 1. Where am I?
 
@@ -40,14 +40,31 @@ Type values:
    the user it already exists and offer to open its diagram instead (skill
    `modellar-diagrams`, task `open-or-create-swc-diagram.md`).
 
-## 3. Create it
+## 3. MCP route (default)
 
-**The UI does the write for now.** `stage_element` (element type `SwComponent`)
-needs the id of the user's staging batch, and no Modellar tool returns one yet. The
-UI form picks the batch by itself. Don't ask the user for a batch id.
+Use it when the Modellar tools include `list_staging_batches`. If they don't, use
+the visual route.
 
-Summarise the values from section 2 for the user and ask for go, then follow the
-visual route below. Fill the form with exactly those values.
+1. **The batch: the user chooses.** A new SWC type has no parent, so it goes into
+   a batch the user picks. Call `list_staging_batches({ modelId })` and show the
+   batches (newest first, with status and element count), and let the user choose.
+   Never pick one yourself. Keep their choice for the rest of the conversation
+   unless they say otherwise. Empty list: ask the user to create a batch in the app
+   (**Model** menu → **ARXML Management** → **Process Batches** tab → **Add batch**).
+2. **Confirm.** Summarise the values from section 2 and wait for the user's go.
+3. **Stage it.** `describe_element_type({ elementType: "SwComponent" })` if you
+   haven't yet, then `stage_element` with:
+   - `elementType`: `"SwComponent"`
+   - `absoluteQualifiedName`: `/<Package Path>/<ShortName>`
+   - `elementData`: `shortName`, `type`, `packagePath` (no leading slash),
+     `sourceFile`, and `description` if the user gave one. `type` takes the
+     schema's spelling: `Application`, `Service`, `NVBlock`, `ComplexDeviceDriver`,
+     `ServiceProxy`, `EcuAbstraction`, `SensorActuator`, `Parameter`,
+     `Composition`, `RootComposition`.
+   - `idempotencyKey`: e.g. `"swc-<ShortName>-1"`.
+4. **Next.** A new type has no diagram. If the user wants one, or wants to add
+   components next, continue with skill `modellar-diagrams`, task
+   `open-or-create-swc-diagram.md` (it creates the diagram in the UI).
 
 ## 4. Visual route
 
@@ -74,7 +91,7 @@ The dialog opens with the title **Create Composition SWC Type** or **Create Atom
 5. **Source File \***
 6. **Description.** Optional.
 
-If you haven't confirmed the values yet, summarise them and ask for go. Then click
+Summarise the values and ask for go. Then click
 **Create Component** and wait until the button stops reading "Creating...".
 
 Success shows the toast **"Software component created successfully"** (sometimes

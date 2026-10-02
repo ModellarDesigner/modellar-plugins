@@ -26,11 +26,27 @@ a page by address, use skill `modellar-navigation`.
 
 ## Tasks
 
-Read the task file before you start. Read only the one you need.
+Read the task file before you start. Read only the ones you need.
 
-| The user wants to …                                  | Read                                       |
-| ---------------------------------------------------- | ------------------------------------------ |
-| open the diagram of an SWC, or create it if missing  | `references/open-or-create-swc-diagram.md` |
+| The user wants to …                                            | Read                                       |
+| -------------------------------------------------------------- | ------------------------------------------ |
+| open the diagram of an SWC, or create it if missing            | `references/open-or-create-swc-diagram.md` |
+| show a component that is in a composition on its diagram       | `references/show-component-on-diagram.md`  |
+| refresh the open diagram, to see what was added elsewhere      | `references/refresh-diagram.md`            |
 
 Creating a component, or adding one to a composition, belongs to skill
 `modellar-components`.
+
+## Common chains
+
+Each task does one thing, so a request can need several, one after the other:
+
+| The user asks to …                                    | Do, in order                                                                                                         |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| add a component to a composition **and see it**       | (`modellar-components`) `add-component-to-composition.md` → `show-component-on-diagram.md`                             |
+| add a component whose type doesn't exist yet          | (`modellar-components`) `create-swc-type.md` → (`modellar-components`) `add-component-to-composition.md` → `show-component-on-diagram.md`       |
+| show a component that is already in the composition   | `show-component-on-diagram.md` only                                                             |
+| see on the open diagram what was added elsewhere      | `refresh-diagram.md` only                                                                       |
+
+Do only what was asked. "Add X to Zuko" doesn't mean "show it": offer it at the end
+instead.

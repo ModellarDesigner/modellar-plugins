@@ -39,7 +39,7 @@ plugins/modellar/
 | Skill                 | Covers                                                     |
 | --------------------- | ---------------------------------------------------------- |
 | `modellar-components` | Create SWC types; add a component to a composition         |
-| `modellar-diagrams`   | Open the diagram of an SWC, or create it if missing        |
+| `modellar-diagrams`   | Open or create a diagram; show a component on it; refresh  |
 | `modellar-navigation` | Go to a model, diagram or configuration page by address    |
 
 ## Releasing a change
