@@ -40,7 +40,7 @@ plugins/modellar/
 | --------------------- | ---------------------------------------------------------- |
 | `modellar-components` | Create SWC types; add a component to a composition         |
 | `modellar-diagrams`   | Open or create a diagram; show a component on it; refresh  |
-| `modellar-navigation` | Go to a model, diagram or configuration page by address    |
+| `modellar-navigation` | Go to a diagram, element or page: Go to… (Ctrl+K), sidebar or address |
 
 ## Releasing a change
 

@@ -41,7 +41,8 @@ when it is hidden.
 
 1. Click the card's footer button **Add** (tooltip "Add component to diagram").
 2. Toast: **"Component node created successfully"**. The box now appears inside the
-   frame, with its ports as handles.
+   frame. Its ports are **not** shown yet: a new component node starts with its port
+   handles hidden, by design. Don't report missing ports as a problem.
 
 Showing a component needs no confirmation: it changes only this diagram, and the
 user can hide it again.
