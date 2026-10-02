@@ -1,0 +1,14 @@
+{
+  "name": "modellar-plugins",
+  "owner": {
+    "name": "angouanga"
+  },
+  "description": "Claude plugins for the ModellAR Designer",
+  "plugins": [
+    {
+      "name": "modellar",
+      "source": "./plugins/modellar",
+      "description": "Teaches Claude how to use the ModellAR Designer: components, diagrams and more, with the Modellar MCP connector"
+    }
+  ]
+}
