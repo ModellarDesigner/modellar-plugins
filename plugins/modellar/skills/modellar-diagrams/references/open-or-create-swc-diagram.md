@@ -48,8 +48,9 @@ connected.
 2. Click **Manage Composition SW Component Types** or **Manage Atomic Sw Component
    Types**. (The dialog title reads "Manage Atomic Software Component Types".)
 3. Type the SWC's short name into **Search existing diagrams...**.
-4. If a row's name matches, click the **name**. Never click the trash icon in the
-   row ("Delete diagram").
+4. If a row's name matches, click its button **"Open <name>"** (the name itself).
+   Never click the trash icon next to it ("Delete diagram"): it deletes the diagram
+   at once, without asking.
 5. A diagram's name usually equals the SWC name, but users can rename it. If the
    only rows are close but not exact, ask the user before picking one.
 

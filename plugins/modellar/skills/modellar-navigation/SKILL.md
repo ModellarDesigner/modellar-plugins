@@ -22,9 +22,13 @@ Pick the first way that applies:
    **Go to…** button yet, or the user isn't in ModellAR at all.
 
 **Why not always the address bar?** Typing an address reloads the whole app: every
-list and diagram is fetched again, which is slow. On a **system** diagram, layout
-changes that weren't saved with **Save Diagram** are lost (other diagrams save each
-move at once). Go to… and the sidebar change the page without a reload.
+list and diagram is fetched again, which is slow. Go to… and the sidebar change the
+page without a reload.
+
+**Leaving a diagram loses unsaved layout**, whichever way you leave. On every kind of
+diagram, moved or resized boxes are saved only by **Save Diagram** (toast **"Diagram
+Saved"**). **Save Diagram** shows a dot, and the description "Unsaved layout
+changes: …", while there is something to save.
 
 ## Ground rules
 

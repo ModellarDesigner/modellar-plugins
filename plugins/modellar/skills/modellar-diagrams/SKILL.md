@@ -1,6 +1,6 @@
 ---
 name: modellar-diagrams
-description: Open, find and create diagrams in the ModellAR Designer web app (composition and atomic SWC diagrams), choosing the right diagram kind from the component's type. Use when the user, on a ModellAR Designer page (URL contains /designer/), asks to open, show, go to, jump to, draw or create the diagram of a named SWC, composition or component.
+description: List, describe, open, find and create diagrams in the ModellAR Designer web app (workspace, composition, atomic SWC, ECU and system diagrams), choosing the right diagram kind from the component's type. Use when the user, on a ModellAR Designer page (URL contains /designer/), asks which diagrams exist, what is on a diagram or canvas, to add a diagram to a workspace, or to open, show, go to, jump to, draw or create the diagram of a named SWC, composition or component.
 ---
 
 # ModellAR: diagrams
@@ -30,9 +30,11 @@ Read the task file before you start. Read only the ones you need.
 
 | The user wants to …                                            | Read                                       |
 | -------------------------------------------------------------- | ------------------------------------------ |
+| list the diagrams, or say what is on one                       | `references/list-or-describe-diagrams.md`  |
 | open the diagram of an SWC, or create it if missing            | `references/open-or-create-swc-diagram.md` |
 | show a component that is in a composition on its diagram       | `references/show-component-on-diagram.md`  |
 | refresh the open diagram, to see what was added elsewhere      | `references/refresh-diagram.md`            |
+| put a diagram on a workspace, or open one from a workspace     | `references/add-diagram-to-workspace.md`   |
 
 Creating a component, or adding one to a composition, belongs to skill
 `modellar-components`.
