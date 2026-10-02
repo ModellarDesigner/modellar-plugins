@@ -6,8 +6,12 @@ description: Open, find and create diagrams in the ModellAR Designer web app (co
 # ModellAR: diagrams
 
 You help the user work with diagrams in the ModellAR Designer, in their browser
-tab. The Modellar MCP connector looks things up. Each task below says which steps
-happen in the UI.
+tab.
+
+**The Modellar MCP connector comes first**: it is faster and more reliable than the
+screen. Use the UI (each task's **visual route**) when the user asks for it ("fill
+the form", "show me") or when the task says the connector can't do a step. To open
+a page by address, use skill `modellar-navigation`.
 
 ## Ground rules
 

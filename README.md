@@ -40,9 +40,20 @@ plugins/modellar/
 | --------------------- | ---------------------------------------------------------- |
 | `modellar-components` | Create SWC types; add a component to a composition         |
 | `modellar-diagrams`   | Open the diagram of an SWC, or create it if missing        |
+| `modellar-navigation` | Go to a model, diagram or configuration page by address    |
 
 ## Releasing a change
 
 Bump `version` in `plugins/modellar/.claude-plugin/plugin.json` with every change
-meant for users. While the version stays the same, installed copies are **not**
-updated, even when new commits are pushed.
+meant for users: patch for a wording fix, minor for a new task or skill. While the
+version stays the same, installed copies are **not** updated, even when new commits
+are pushed.
+
+The pre-commit hook refuses a plugin change without a bump. Enable it once per clone:
+
+```
+git config core.hooksPath .githooks
+```
+
+The **Version bump** GitHub workflow checks the same rule on every push and pull
+request, for commits made without the hook.

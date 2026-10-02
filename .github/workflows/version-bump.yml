@@ -1,0 +1,25 @@
+# Backstop for the pre-commit hook, which runs only in clones that enabled it.
+name: Version bump
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Plugin changes bump the plugin version
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+          else
+            base="${{ github.event.before }}"
+          fi
+          # A new branch has no "before" commit to compare with.
+          case "$base" in ''|0000000000000000000000000000000000000000) exit 0 ;; esac
+          sh scripts/check-version-bump.sh "$base"
