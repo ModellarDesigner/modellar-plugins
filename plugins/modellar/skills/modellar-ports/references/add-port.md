@@ -78,11 +78,13 @@ For when the user asks to do it in the UI, or the MCP route isn't available.
 5. **Short Name**: the port name.
 6. **Direction**: the select, default **Provider**. Options **Provider**,
    **Receiver**, **ProviderReceiver**.
-7. **Port Interface**: click the combobox **Select a SWC interface...**. In the
+7. **Port Interface**: click the combobox **Select a port interface...** (older
+   versions: **Select a SWC interface...**). In the
    popover, type the interface name into **Search by name, short name, or
    description...** (the select **Filter by type** narrows by kind, for example
    **SenderReceiverInterface**). Pick the row with the right name. The list grows as
-   you scroll; "No SWC interfaces found." means no match.
+   you scroll; "No port interfaces found." (or "No SWC interfaces found.") means no
+   match.
 8. **Description**: optional.
 9. Summarise the values and wait for go. Then click **Create** and wait until it
    stops reading "Creating...".

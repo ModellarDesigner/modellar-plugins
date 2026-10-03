@@ -16,8 +16,16 @@ How to read a block:
 - **Stored as**: names that `search_elements` returns differently. Map them back
   before an update (`edit-element.md`, step 3.2). Always: the stored `parentId` is
   the parent's qualified name, or the Package Path for a top-level element.
-- **Menu**: the path under the menubar **Configuration**. **Button** / **Dialog** /
-  **Submit**: the table's create button, the dialog title, and the submit button.
+  A stored reference (a `…Ref` field) may start with `/` (imported from ARXML) or
+  not (created in the app). Both mean the same element: compare names ignoring a
+  leading `/`, and in an update send a reference back in the form it is stored in.
+- **Defaults**: values saved when a field is left empty, though the form doesn't
+  show them. Tell the user before saving.
+- **Menu**: the path under the menubar **Configuration**. The menubar is the row of
+  tabs **Diagram**, **Model**, **Configuration** at the top of the designer: click
+  **Configuration**, then hover a sub-menu's label to open it. **Button** /
+  **Dialog** / **Submit**: the table's create button, the dialog title, and the
+  submit button.
 - **Route today**: which routes work. "Form broken" means use the MCP route and tell
   the user why if they asked for the form.
 
@@ -35,6 +43,10 @@ Every required enum value must use the spelling shown here (the schema's).
   `TypeReference`, `DataReference`), `implementationType` (e.g. `uint8`),
   `calibrationAccess` (e.g. `ReadOnly`).
 - **Stored as:** `parentId` → `packagePath`.
+- **Defaults:** no `implementationType` (an empty **Implementation Type**) is saved
+  as **`uint32`**, through the form and through MCP alike. The form's placeholder
+  says "e.g., uint8". Ask for the implementation type, or tell the user `uint32`
+  will be stored.
 - **Menu:** **Types** → **Data Types** (base types: **Types** → **Base Types**).
   **Button:** **New Data Type** (**New Base Type**). **Dialog:** **Create New Data
   Type**. **Submit:** **Create Data Type**.
@@ -52,7 +64,8 @@ Every required enum value must use the spelling shown here (the schema's).
 
 - **Parent:** Top-level. **Qname:** `<pkg>/<shortName>`.
 - **Fields:** **`packagePath`**. `ParameterInterface` and `TriggerInterface` take
-  **no** `description`.
+  **no** `description` yet. The form still shows **Description** for them, but the
+  text is dropped: tell the user if they type one.
 - **Stored as:** `parentId` → `packagePath`.
 - **Menu:** **Interfaces**. **Button:** **New Interface**. **Dialog:** **Create New
   Interface**. **Submit:** **Create Interface**.

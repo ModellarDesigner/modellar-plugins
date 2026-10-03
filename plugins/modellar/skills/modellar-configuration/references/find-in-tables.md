@@ -7,16 +7,21 @@ show the user the table of one element type with a filter applied.
 
 - `search_elements({ modelId, elementType: "<type>", search: "<part of a name>", limit: 50 })`.
   `search` matches a part of the short name or of the qualified name, ignoring
-  case. Leave out `elementType` to search every type. Add `includeElementData: true`
-  when you need field values (a data type's category, a runnable's interval).
+  case, also inside words: "CHR" finds "Syn**chr**on…". Prefer a whole name or a
+  prefix with `_` ("CHR_"). Leave out `elementType` to search every type. Add
+  `includeElementData: true` when you need field values (a data type's category, a
+  runnable's interval), but only on a narrow search: just the first 10 results
+  carry them, and a wide search with data can be too big to read.
 - At most 50 results, newest first, with **no paging**. `count` is the number
   returned, not the total. When you get exactly the `limit`, there may be more:
   narrow the search, or count in the table instead (its summary line shows the
   total).
-- There is no filter by parent. To list an element's children, use the parent's
-  qualified name **followed by `/`** as `search` (a child's qualified name starts
-  with it). Example: `search: "Pkg/Interfaces/If_Speed/"` and
-  `elementType: "Operation"`. Leave out `elementType` to get every child type.
+- **Children of an element, or everything in a package:**
+  `qualifiedNamePrefix` with the parent's qualified name **followed by `/`** (a
+  child's qualified name starts with it), or the package path. Example:
+  `qualifiedNamePrefix: "Pkg/Interfaces/If_Speed/"` and `elementType: "Operation"`.
+  Leave out `elementType` to get every child type. If the tool has no
+  `qualifiedNamePrefix` yet, pass the same text as `search`.
 
 ## 2. Visual route: the table
 
@@ -42,8 +47,14 @@ SWC Internal Behaviors has no menu entry: use **Go to…** (`SWC Internal Behavi
 
 ### Filter and sort
 
-- **Search box** (e.g. "Search interfaces..."): type part of a name; the table
-  follows after a short pause. **Reset** appears and clears every filter.
+- **Search box** (e.g. "Search interfaces..."): matches part of the **short name
+  only** (not the path), ignoring case, also inside words. **Reset** appears and
+  clears every filter.
+- **Wait for the result.** The table keeps showing the old rows until the new ones
+  arrive, a few seconds on a large model. Newer versions show **Updating…** next
+  to the summary line and dim the rows meanwhile; older ones show no sign. Read
+  the rows only once **Updating…** is gone and the summary line ("Showing 1 to 50
+  of N …") has changed. A sort arrow appearing doesn't mean the rows have.
 - **Facet buttons** (**Type**, **Status**, **Category**, **Direction**, **Scope**,
   …): click, then click option texts to tick them; ticked options combine. A number
   on the button shows how many are ticked. Press **Escape** to close.

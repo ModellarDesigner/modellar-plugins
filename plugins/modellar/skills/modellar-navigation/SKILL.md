@@ -18,6 +18,10 @@ Pick the first way that applies:
    Element results appear after a short pause and need at least 2 characters.
 2. **Outside a model:** click the sidebar link: **Dashboard**, **Projects**,
    **Users**, **Profile**, **API reference**, **Element Workflow**.
+   **Into a model** (the Dashboard has no model links, and the designer has no
+   model switcher): sidebar **Projects** → click the project's card → the tab
+   **Models** (table **AUTOSAR Models**) → click the model's name. It opens the
+   model's workspace diagram, by id.
 3. **By address** (the addresses below): only when neither works, e.g. there is no
    **Go to…** button yet, or the user isn't in ModellAR at all.
 
@@ -57,8 +61,9 @@ that is already an id. It opens the most recent workspace diagram.
 **Never put the model's `slug` in an address.** A page opened by slug (for example
 `/designer/my-model/...`) displays normally, but nothing saved from it reaches the
 model: creates fail, and the page shows no error. If the user's current URL holds a
-slug, open the same page with the model's `id` before you fill in any form. The MCP
-tools themselves accept either.
+slug, open the same page with the model's `id` before you fill in any form: take the
+current address, replace only the segment after `/designer/` with the `id` from
+`list_accessible_models`, and open that. The MCP tools themselves accept either.
 
 ### Diagrams
 

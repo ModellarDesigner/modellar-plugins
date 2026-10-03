@@ -32,7 +32,7 @@ URL: `https://<host>/designer/{modelId}/...`. Take `{modelId}` from it.
      `add-port.md`, step 3.3, for the tag);
    - text: `description`.
 
-3. The open diagram and its properties panel show the change within about 30
+3. The open diagram and its properties panel show the change within about 10
    seconds; no reload needed.
 
 ## 4. Visual route

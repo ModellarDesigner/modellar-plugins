@@ -10,7 +10,8 @@ type's parent, its fields, and which route works today.
 ## 1. Where am I?
 
 URL: `https://<host>/designer/{modelId}/...`. Take `{modelId}` from it for every MCP
-call. No `/designer/` in the URL: ask which model, offering `list_accessible_models`.
+call. No `/designer/` in the URL: call `list_accessible_models`. Exactly one model:
+use it and say which. Several: ask which one.
 
 ## 2. Gather and check
 
@@ -19,14 +20,25 @@ call. No `/designer/` in the URL: ask which model, offering `list_accessible_mod
    missing required value; don't invent one. Short name rules: starts with a letter,
    then letters, digits and `_`, at most 128 characters, not a C/C++ keyword such as
    `int` or `class`.
-2. **The parent** (child types only, see the catalog). Find it:
-   `search_elements({ modelId, elementType: "<parent type>", search: "<parent name>", includeElementData: true })`.
+2. **The parent** (child types only, see the catalog). Find it in two steps:
+   1. `search_elements({ modelId, elementType: "<parent type>", search: "<parent's full short name>" })`,
+      without element data. `search` is a part-of-a-word match ("CHR" also finds
+      "Syn**chr**on…"), so use the whole name, or `qualifiedNamePrefix` with the
+      package path when you know it.
+   2. Once you have one or a few matches (at most 10), search again with
+      `includeElementData: true` to read them. Only the first 10 results carry
+      element data; a wide search with data can also be too big to read.
+
    Keep its `id`, `qualifiedName`, `batchId` and `elementData.sourceFile`. Several
    matches: ask which one, showing each `qualifiedName`. Not found: offer to create
    it first (another run of this task).
+
 3. **Referenced elements** (a data type for a data element, a mode declaration group
    for a prototype, …): look each one up the same way and keep `id` and
-   `qualifiedName`.
+   `qualifiedName`. The user named a kind, not an element ("an integer data
+   type"): never pick one yourself. Show 3–5 candidates, plain ones first (e.g. an
+   implementation type `uint8` / `uint16` before an application type with a
+   specific meaning), and let the user pick.
 4. **No duplicate.**
    `search_elements({ modelId, elementType: "<type>", search: "<short name>" })`.
    A result whose `qualifiedName` equals the new element's qualified name (catalog:
@@ -35,13 +47,17 @@ call. No `/designer/` in the URL: ask which model, offering `list_accessible_mod
    - A **child** goes into its parent's batch: the parent's `batchId`. Don't ask.
    - A **top-level** element (catalog: "Top-level") goes into a batch the user
      chooses: `list_staging_batches({ modelId })`, show the batches (newest first,
-     with status and element count), and let the user pick. Never pick one
-     yourself; reuse their choice for the rest of the conversation. Empty list: ask
+     with status and element count), and let the user pick, **even when there is
+     only one**: name it in the question so a yes is enough. Never pick one
+     yourself; reuse their choice for the rest of the conversation. Any status
+     works, **COMPLETED** included: a completed batch still takes new elements.
+     Empty list: ask
      them to create one (**Model** menu → **ARXML Management** → **Process
      Batches** tab → **Add batch**).
 6. **Source file.** A child copies its parent's `elementData.sourceFile`. A
    top-level element reuses the `sourceFile` of a related element of the same kind
-   (search one, `includeElementData: true`), or the user names one.
+   (search one, `includeElementData: true`), or the user names one. Nothing related
+   and the user has no preference: `agent-generated`.
 
 ## 3. MCP route (default)
 
@@ -72,6 +88,8 @@ Pick one:
 
 - **The table's dialog:** menubar **Configuration** → the page (catalog: **Menu**)
   → the button **New …** (catalog: **Button**). A dialog opens (catalog: **Dialog**).
+  Click **New …** only once the table shows rows: a click while the page is still
+  loading does nothing. No dialog after a click: wait a moment and click once more.
 - **The full page:** **Go to…** (or **Ctrl+K**), type `New <section>` (for example
   `New Interfaces`, `New Data Types`, plural) and press **Enter** once the entry is
   visible. The page shows the heading **Create …**.
@@ -81,11 +99,12 @@ Never open a form on an address that holds the model's slug (see skill
 
 ### Fill it
 
-1. **Staging Batch** (top-level types only). The newest batch is usually
-   preselected: the button shows an 8-character id, a status and "N elements". To
-   pick another, click it, type part of the id into **Search by batch or trigger
-   run id...**, then click the entry (or press **Enter**). Child types have no
-   batch field: they take the parent's.
+1. **Staging Batch** (top-level types only), **before anything else**. The button
+   may read **Select staging batch** at first and fill in by itself a moment
+   later: an 8-character id, a status and "N elements". Wait a moment, then check
+   it is the batch the user chose. To pick one, click it, type part of the id into
+   **Search by batch or trigger run id...**, then click the entry (or press
+   **Enter**). Child types have no batch field: they take the parent's.
 2. **The parent picker first** (child types): Interface, Software Component,
    Internal Behaviour, Mode Declaration Group, …. Some forms show **Short Name**
    only after the parent is chosen.
@@ -96,8 +115,16 @@ Never open a form on an address that holds the model's slug (see skill
    you click it or press **Enter**. A click closes the picker by itself. **Don't
    press Escape after a pick**: in a dialog it closes the whole dialog and loses
    what you filled in.
-4. **Short Name**, then the other fields of the catalog row, by their labels.
-5. Summarise the values and wait for go. Then click the submit button (catalog:
+4. **Short Name**, then the other fields of the catalog row, by their labels. Then
+   check that **Short Name** still holds what you typed: in one test, typing landed
+   elsewhere around the batch pick.
+5. **Source File** (required, red \*, on top-level types such as Interface, Data
+   Type, Mode Declaration Group, SW Component Type, ECU Type, System): the value
+   from step 2.6. Child forms mostly fill it from the parent; the catalog's
+   **Traps** say where they don't.
+6. **Fields the form fills in silently** (catalog: **Defaults**): tell the user
+   which value will be saved when they leave such a field empty.
+7. Summarise the values and wait for go. Then click the submit button (catalog:
    **Submit**) and wait until it stops reading "Creating...".
 
 ### After submit

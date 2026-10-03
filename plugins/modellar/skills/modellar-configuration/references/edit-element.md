@@ -12,8 +12,10 @@ being edited.
 
 ## 2. Look up
 
-1. `search_elements({ modelId, elementType: "<type>", search: "<name>", includeElementData: true })`.
-   Keep the element's `id`, `qualifiedName`, `updatedAt` and `elementData`.
+1. `search_elements({ modelId, elementType: "<type>", search: "<full short name>", includeElementData: true })`.
+   Use the whole name: a short text matches inside other names too, and only the
+   first 10 results carry `elementData`. Keep the element's `id`,
+   `qualifiedName`, `updatedAt` and `elementData`.
    Several matches: ask which one, showing each `qualifiedName`.
 2. A **new reference** (another data type, interface, mode group …): look it up
    too, and keep its `id` and `qualifiedName`.
@@ -33,7 +35,8 @@ being edited.
       stored **`parentId`** holds the parent's qualified name (a child's
       `…Qname` / `parentQname` field) or the Package Path (a top-level element's
       `packagePath`). Trust it over other stored reference fields.
-   3. Change only the fields the user asked for.
+   3. Change only the fields the user asked for. Send references (`…Ref` fields)
+      back exactly as stored, with or without a leading `/`.
    4. Leave out `elementType`.
 3. **Update.** `update_staged_element` with `stagedElementId` = the `id`,
    `elementType`, the `elementData` from step 2, and `expectedUpdatedAt` = the
@@ -45,7 +48,7 @@ being edited.
    those fields and call again.
 
 A changed element that is already drawn on an open diagram updates by itself within
-about 30 seconds.
+about 10 seconds.
 
 ## 4. Visual route
 
