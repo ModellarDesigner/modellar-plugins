@@ -41,7 +41,7 @@ changes: …", while there is something to save.
   the previous page for a moment; wait briefly and look again.
 - **No Modellar tools?** Ask the user to connect the Modellar connector in Claude's
   connector settings, using an API key from their ModellAR **Profile** page
-  (**New API key**). Go to… works without them.
+  (**API keys** → **New key**). Go to… works without them.
 
 ## Addresses
 
@@ -50,9 +50,15 @@ you are from the URL.
 
 ### The model
 
-`/designer/{modelId}`. `{modelId}` is the model's `id` or `slug` from
-`list_accessible_models`, or the segment after `/designer/` in the current URL.
-It opens the most recent workspace diagram.
+`/designer/{modelId}`. `{modelId}` is the model's **`id`** from
+`list_accessible_models`, or the segment after `/designer/` in the current URL when
+that is already an id. It opens the most recent workspace diagram.
+
+**Never put the model's `slug` in an address.** A page opened by slug (for example
+`/designer/my-model/...`) displays normally, but nothing saved from it reaches the
+model: creates fail, and the page shows no error. If the user's current URL holds a
+slug, open the same page with the model's `id` before you fill in any form. The MCP
+tools themselves accept either.
 
 ### Diagrams
 

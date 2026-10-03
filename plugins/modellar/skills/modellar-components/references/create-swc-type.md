@@ -36,7 +36,7 @@ Type values:
    ask the user.
 2. **It must not exist yet.**
    `search_elements({ modelId, elementType: "SwComponent", search: "<ShortName>" })`.
-   If a result's `qualifiedName` equals `/<Package Path>/<ShortName>`, **stop**. Tell
+   If a result's `qualifiedName` equals `<Package Path>/<ShortName>` (no leading slash), **stop**. Tell
    the user it already exists and offer to open its diagram instead (skill
    `modellar-diagrams`, task `open-or-create-swc-diagram.md`).
 
@@ -55,7 +55,7 @@ the visual route.
 3. **Stage it.** `describe_element_type({ elementType: "SwComponent" })` if you
    haven't yet, then `stage_element` with:
    - `elementType`: `"SwComponent"`
-   - `absoluteQualifiedName`: `/<Package Path>/<ShortName>`
+   - `absoluteQualifiedName`: `<Package Path>/<ShortName>`
    - `elementData`: `shortName`, `type`, `packagePath` (no leading slash),
      `sourceFile`, and `description` if the user gave one. `type` takes the
      schema's spelling: `Application`, `Service`, `NVBlock`, `ComplexDeviceDriver`,
@@ -109,7 +109,7 @@ The same dialog then shows **Create Diagram for New SWC** (badge "Optional").
 
 ## 5. Report
 
-Tell the user the type, the qualified name `/<Package Path>/<ShortName>`, and
+Tell the user the type, the qualified name `<Package Path>/<ShortName>`, and
 whether a diagram was created.
 
 ## Traps

@@ -35,8 +35,8 @@ URL: `https://<host>/designer/{modelId}/...`. Take `{modelId}` from it.
    `ParameterInterface`, `ModeSwitchInterface`, `TriggerInterface` or
    `NvDataInterface`. Unsure of the kind? Search without `elementType` and keep the
    results whose `elementType` ends in `Interface`. Keep its `id`,
-   `qualifiedName` and `elementType`. Not found: tell the user it must be created
-   first; this plugin doesn't cover that yet.
+   `qualifiedName` and `elementType`. Not found: it must be created
+   first (skill `modellar-configuration`, task `create-element.md`).
 
 ## 3. MCP route (default)
 

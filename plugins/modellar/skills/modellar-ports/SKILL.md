@@ -25,7 +25,7 @@ a page by address, use skill `modellar-navigation`.
 - **No Modellar tools?** If tools such as `search_elements` aren't available, the
   Modellar connector isn't connected. Ask the user to connect it in Claude's
   connector settings, using an API key from their ModellAR **Profile** page
-  (**New API key**). Until then, look things up in the UI instead.
+  (**API keys** → **New key**). Until then, look things up in the UI instead.
 
 ## Where ports live
 
@@ -36,8 +36,8 @@ composition diagram has a **Ports** tab too, but it is view only: it can show an
 hide, not add or edit.
 
 A port uses one **port interface** (sender-receiver, client-server, …). The
-interface must exist first. Creating interfaces is not covered by this plugin yet:
-if it's missing, tell the user.
+interface must exist first. To create a missing interface, use skill
+`modellar-configuration`.
 
 ## Tasks
 

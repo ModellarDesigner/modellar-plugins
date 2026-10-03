@@ -22,7 +22,7 @@ a page by address, use skill `modellar-navigation`.
 - **No Modellar tools?** If tools such as `search_elements` aren't available, the
   Modellar connector isn't connected. Ask the user to connect it in Claude's
   connector settings, using an API key from their ModellAR **Profile** page
-  (**New API key**). Until then, look things up in the UI instead.
+  (**API keys** → **New key**). Until then, look things up in the UI instead.
 
 ## Tasks
 

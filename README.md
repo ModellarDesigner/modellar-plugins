@@ -36,13 +36,14 @@ plugins/modellar/
   skills/<area>/references/*.md     one file per task, read only when needed
 ```
 
-| Skill                 | Covers                                                                                           |
-| --------------------- | ------------------------------------------------------------------------------------------------ |
-| `modellar-components` | Create SWC types; add a component to a composition                                               |
-| `modellar-diagrams`   | List, open or create diagrams; the properties panel; show a component; show or hide all; refresh |
-| `modellar-ports`      | Add or edit a port; show, hide or move ports on a diagram                                        |
-| `modellar-connectors` | Add or edit assembly and delegation connectors; show or hide them                                |
-| `modellar-navigation` | Go to a diagram, element or page: Go to… (Ctrl+K), sidebar or address                            |
+| Skill                    | Covers                                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `modellar-components`    | Create SWC types; add a component to a composition                                                                 |
+| `modellar-diagrams`      | List, open or create diagrams; the properties panel; show a component; show or hide all; refresh                   |
+| `modellar-ports`         | Add or edit a port; show, hide or move ports on a diagram                                                          |
+| `modellar-connectors`    | Add or edit assembly and delegation connectors; show or hide them                                                  |
+| `modellar-configuration` | Create, edit or find data types, interfaces, operations, modes, runnables, events and other configuration elements |
+| `modellar-navigation`    | Go to a diagram, element or page: Go to… (Ctrl+K), sidebar or address                                              |
 
 ## Releasing a change
 
