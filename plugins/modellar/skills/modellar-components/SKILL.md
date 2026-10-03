@@ -28,10 +28,11 @@ a page by address, use skill `modellar-navigation`.
 
 Read the task file before you start. Read only the ones you need.
 
-| The user wants to …                                          | Read                                         |
-| ------------------------------------------------------------ | -------------------------------------------- |
-| create a new SWC type (atomic or composition)                | `references/create-swc-type.md`              |
-| add a component (a prototype of a type) to a composition     | `references/add-component-to-composition.md` |
+| The user wants to …                                      | Read                                                                 |
+| -------------------------------------------------------- | -------------------------------------------------------------------- |
+| create a new SWC type (atomic or composition)            | `references/create-swc-type.md`                                      |
+| add a component (a prototype of a type) to a composition | `references/add-component-to-composition.md`                         |
+| draw a component that is already in the composition      | skill `modellar-diagrams`, `references/show-component-on-diagram.md` |
 
 Showing a component on a diagram, refreshing a diagram, and opening or creating a
 diagram belong to skill `modellar-diagrams`.
@@ -40,12 +41,12 @@ diagram belong to skill `modellar-diagrams`.
 
 Each task does one thing, so a request can need several, one after the other:
 
-| The user asks to …                                    | Do, in order                                                                                                         |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| add a component to a composition **and see it**       | `add-component-to-composition.md` → (`modellar-diagrams`) `show-component-on-diagram.md`                             |
-| add a component whose type doesn't exist yet          | `create-swc-type.md` → `add-component-to-composition.md` → (`modellar-diagrams`) `show-component-on-diagram.md`       |
-| show a component that is already in the composition   | (`modellar-diagrams`) `show-component-on-diagram.md` only                                                             |
-| see on the open diagram what was added elsewhere      | (`modellar-diagrams`) `refresh-diagram.md` only                                                                       |
+| The user asks to …                                  | Do, in order                                                                                                    |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| add a component to a composition **and see it**     | `add-component-to-composition.md` → (`modellar-diagrams`) `show-component-on-diagram.md`                        |
+| add a component whose type doesn't exist yet        | `create-swc-type.md` → `add-component-to-composition.md` → (`modellar-diagrams`) `show-component-on-diagram.md` |
+| show a component that is already in the composition | (`modellar-diagrams`) `show-component-on-diagram.md` only                                                       |
+| see on the open diagram what was added elsewhere    | (`modellar-diagrams`) `refresh-diagram.md` only                                                                 |
 
 Do only what was asked. "Add X to Zuko" doesn't mean "show it": offer it at the end
 instead.

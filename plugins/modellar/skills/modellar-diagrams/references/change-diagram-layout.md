@@ -27,6 +27,11 @@ Call `get_diagram_layout` with the `diagramId`. You get:
 - **connections**: name, kind (`assembly`, `delegation`, `mapping`), the node
   and port at each end, `visible`.
 
+A frame can have hundreds of ports, so only the ports that are shown or
+connected are listed; each node says how many it left out (`portsLeftOut`). To
+see every port of one node, call it again with `node` (that node only, all its
+ports). `ports: "none"` gives the boxes only.
+
 Find what the user named. If a name matches several nodes, ask which one; the
 tools refuse to guess and list the candidates.
 
@@ -42,8 +47,9 @@ So, **before** you change anything on an open diagram:
    click **Save Diagram** in the floating dock (or ask the user to) and wait for
    the toast **"Diagram Saved"**.
 2. Make the changes (step 4).
-3. Refresh with task `refresh-diagram.md`. Skip its "Save first?" question: you
-   just saved.
+3. Refresh with task `refresh-diagram.md`: click **Reload Diagram**, then confirm
+   the dialog **"Reload diagram from the database?"** with **Reload diagram**. You
+   can skip that task's "Save first?" question to the user: you just saved.
 
 Never ask for a save **after** your change.
 
@@ -91,9 +97,23 @@ overlaps Logger; want me to move Logger down?"
   `get_diagram_layout`.** Showing it is task `show-component-on-diagram.md`, not
   `set_node_visibility`.
 - **Same for a connection that was never drawn**: `set_connection_visibility`
-  only changes connections already on the diagram. Otherwise use the component's
-  ⋮ menu (**Show Assembly Connections** / **Show Delegation Connections**) on the
-  canvas, then **Save Diagram**.
+  only changes connections already on the diagram. To draw one on the canvas:
+  show the ports at both ends first (`set_port_visibility`, then refresh), then
+  in the component's ⋮ menu click **Show Connections of Visible Ports**, then
+  **Save Diagram**. Avoid the menu's **Show Connections** picker for this for
+  now: a connection drawn from it fails to save ("Save Failed").
+- **If the user opens the Show Connections picker anyway**, know what it does:
+  - There is no Apply button. Ticking a row draws the connection at once, and the
+    tick and the counters catch up only after a second or two. Wait; don't click
+    again.
+  - Ticking also puts the component at the other end on the diagram if it
+    wasn't there, and **that box is saved at once**. The ports it shows are not
+    saved until **Save Diagram**.
+  - Unticking removes the line only. The component it added and the ports stay.
+  - The card's **Visible: N** counts shown **ports**, not connections, so it
+    doesn't drop when you untick.
+  - The checkbox at the top acts on every matching connection, including rows
+    not scrolled into view yet. Its name says how many.
 - **A new port or connection is a model change, not a layout change.** Stage it
   first (`stage_element`), then show it here.
 - **Hiding a port hides its connections too.** Showing a connection also shows

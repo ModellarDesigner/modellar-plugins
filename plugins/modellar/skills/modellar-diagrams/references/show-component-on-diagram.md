@@ -27,10 +27,16 @@ composition's name with "Composition" underneath. If not, open it first (task
 
 ## 3. Find the component's card
 
-Find the card with the component's name. Its status icon reads **"Not in diagram"**
-when it is hidden.
+Find the card with the component's name. Its footer button tells you its state.
+The button's name includes the component's name:
 
-- **Already on the diagram** (no "Not in diagram"): tell the user and stop.
+| Button reads | Its name                          | Means                       |
+| ------------ | --------------------------------- | --------------------------- |
+| **Add**      | "Add <component> to the diagram"  | never drawn on this diagram |
+| **Show**     | "Show <component> on the diagram" | drawn before, now hidden    |
+| **Hide**     | "Hide <component> on the diagram" | already on the diagram      |
+
+- **Already on the diagram** (button **Hide**): tell the user and stop.
 - **Not in the list:** if it was just added through the Modellar tools, wait about
   10 seconds; the list updates by itself. Still missing? Refresh the diagram (task
   `refresh-diagram.md`), open the panel again and look once more. If it still isn't
@@ -39,10 +45,15 @@ when it is hidden.
 
 ## 4. Show it
 
-1. Click the card's footer button **Add** (tooltip "Add component to diagram").
-2. Toast: **"Component node created successfully"**. The box now appears inside the
-   frame. Its ports are **not** shown yet: a new component node starts with its port
-   handles hidden, by design. Don't report missing ports as a problem.
+Click the button **once**. It is disabled while it works, and afterwards it reads
+**Hide**: a second click would hide the component again.
+
+- **Add**: toast **"Component node created successfully"**. The box now appears
+  inside the frame, and it is saved. Its ports are **not** shown yet: a new
+  component node starts with its port handles hidden, by design. Don't report
+  missing ports as a problem.
+- **Show**: toast **"Component shown successfully"**. The box appears, but only on
+  this canvas: click **Save Diagram** afterwards, or a refresh hides it again.
 
 Showing a component needs no confirmation: it changes only this diagram, and the
 user can hide it again.
@@ -63,4 +74,7 @@ frame.
 - If the Components tab list is filtered (a **Filter** popover with search,
   status and visibility), the card may be hidden. Use **Clear filters**.
 - **Reload Diagram** doesn't bring a hidden component onto the canvas. Only its
-  **Add** button does.
+  **Add** or **Show** button does.
+- Don't click the button again because the layout shifted or nothing seemed to
+  happen. Wait for the toast, then read the button: if it reads **Hide**, it
+  worked.

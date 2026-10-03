@@ -5,6 +5,11 @@ a composition. This creates the component **in the model only**. It is hidden on
 the composition's diagram until it is shown there (skill `modellar-diagrams`, task
 `show-component-on-diagram.md`).
 
+**Already in the composition, just not drawn?** Then there is nothing to add:
+don't use this task. Go straight to skill `modellar-diagrams`, task
+`show-component-on-diagram.md`. A composition often holds components that its
+diagram doesn't show yet.
+
 The user names two things:
 
 - **the composition** (e.g. "Zuko"): the parent that gets the new component;
