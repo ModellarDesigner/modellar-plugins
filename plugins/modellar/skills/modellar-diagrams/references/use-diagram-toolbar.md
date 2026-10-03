@@ -55,6 +55,9 @@ fitted every box to its ports, then saved."
   or with task `change-diagram-layout.md`), say so and ask before pressing it.
 - A layout or resize right after a refresh works on the refreshed canvas. Don't
   refresh after it without saving, or it is gone.
+- **Filter Components lists only boxes already on the canvas.** A component never
+  placed on this diagram isn't in it. For "show all components", or one that
+  isn't there, use task `show-or-hide-all.md` (the frame's properties panel).
 - **Fit in Frame** appears only on composition diagrams.
 - **Focus element** is an icon-only button at the right end of the toolbar. Find
   it by its name "Focus element".

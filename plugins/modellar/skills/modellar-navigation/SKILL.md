@@ -59,13 +59,13 @@ It opens the most recent workspace diagram.
 Get `{diagramId}` from `list_diagrams({ modelId, stagedElementId })`. It is the
 diagram's own `id`, **not** the id of the element it shows.
 
-| `diagramType` from `list_diagrams`                                  | Address                                                    |
-| ------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `diagramType` from `list_diagrams`                                    | Address                                                                 |
+| --------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `COMPOSITION_SW_COMPONENT_TYPE`, `ROOT_COMPOSITION_SW_COMPONENT_TYPE` | `/designer/{modelId}/diagram/composition-sw-component-type/{diagramId}` |
-| `ATOMIC_SW_COMPONENT_TYPE`                                          | `/designer/{modelId}/diagram/atomic-sw-component-type/{diagramId}` |
-| `ECU_MANAGEMENT`                                                    | `/designer/{modelId}/diagram/ecu/{diagramId}`              |
-| `SYSTEM_MANAGEMENT`                                                 | `/designer/{modelId}/diagram/system/{diagramId}`           |
-| `WORKSPACE`                                                         | `/designer/{modelId}/diagram/workspace/{diagramId}`        |
+| `ATOMIC_SW_COMPONENT_TYPE`                                            | `/designer/{modelId}/diagram/atomic-sw-component-type/{diagramId}`      |
+| `ECU_MANAGEMENT`                                                      | `/designer/{modelId}/diagram/ecu/{diagramId}`                           |
+| `SYSTEM_MANAGEMENT`                                                   | `/designer/{modelId}/diagram/system/{diagramId}`                        |
+| `WORKSPACE`                                                           | `/designer/{modelId}/diagram/workspace/{diagramId}`                     |
 
 Without `{diagramId}` the address opens the most recent diagram of that kind.
 

@@ -36,6 +36,7 @@ the SWC's name, tell the user they are already there and stop.
 
    `{diagramId}` is the `id` from `list_diagrams`, not the component's id. Opening
    needs no confirmation.
+
 4. **Several diagrams:** list their names and ask which one.
 5. **None:** create it with the visual route, section 4.
 

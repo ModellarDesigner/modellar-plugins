@@ -94,8 +94,8 @@ overlaps Logger; want me to move Logger down?"
 ## Traps
 
 - **A component that was never placed on the diagram is not in
-  `get_diagram_layout`.** Showing it is task `show-component-on-diagram.md`, not
-  `set_node_visibility`.
+  `get_diagram_layout`.** Showing it is task `show-component-on-diagram.md` (one)
+  or `show-or-hide-all.md` (many), not `set_node_visibility`.
 - **Same for a connection that was never drawn**: `set_connection_visibility`
   only changes connections already on the diagram. To draw one on the canvas:
   show the ports at both ends first (`set_port_visibility`, then refresh), then

@@ -18,10 +18,10 @@ composition's name with "Composition" underneath. If not, open it first (task
 
 1. On the canvas, click the big **frame** whose header shows the composition's
    name. It's the outer box that contains the other components. This selects it.
-2. Open the properties panel with the button **Properties panel** (a small "<"
-   chevron on the right edge of the canvas, at mid-height). Collapsed, it is
-   `expanded=false`. If the panel is already open, it shows the heading
-   **Properties**, and the button is `expanded=true`: don't click it again.
+2. Open the properties panel (see `properties-panel.md`): the button **Properties
+   panel**, a small "<" chevron on the right edge of the canvas, at mid-height.
+   Collapsed, it is `expanded=false`. If the panel is already open, it shows the
+   heading **Properties**, and the button is `expanded=true`: don't click it again.
 3. In the panel, click the tab **Components**. The tabs are Properties, Ports,
    Components, Connections. You now see "SW Component Prototypes".
 
@@ -59,7 +59,7 @@ Showing a component needs no confirmation: it changes only this diagram, and the
 user can hide it again.
 
 Don't use **Show All** unless the user asks. It reveals every hidden component, not
-just this one.
+just this one. For many at once, use task `show-or-hide-all.md`.
 
 ## 5. Report
 
@@ -69,6 +69,8 @@ frame.
 ## Traps
 
 - Clicking the frame alone does not open the panel. You must click the "<" button.
+- The toolbar's **Filter Components** at the top of the canvas is not this list: it
+  shows only boxes already on the canvas, so a never-placed component isn't in it.
 - The frame's ⋮ menu has no "add component" item, and its "Show Details" does
   nothing. Use the panel.
 - If the Components tab list is filtered (a **Filter** popover with search,
@@ -78,3 +80,6 @@ frame.
 - Don't click the button again because the layout shifted or nothing seemed to
   happen. Wait for the toast, then read the button: if it reads **Hide**, it
   worked.
+- **Show** and **Hide** change only the canvas until **Save Diagram**; **Add** is
+  saved at once. The dock's unsaved dot doesn't light up for visibility changes:
+  save anyway. For many components at once, use task `show-or-hide-all.md`.

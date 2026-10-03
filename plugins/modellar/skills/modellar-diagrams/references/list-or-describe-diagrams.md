@@ -5,13 +5,13 @@ nothing is created or changed, so no confirmation is needed.
 
 A model has five kinds of diagram:
 
-| Kind              | `diagramType` from `list_diagrams`                                     | Shows                                                       |
-| ----------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------- |
-| Workspace         | `WORKSPACE`                                                            | other diagrams, one box per diagram; a model's home page    |
-| Composition       | `COMPOSITION_SW_COMPONENT_TYPE`, `ROOT_COMPOSITION_SW_COMPONENT_TYPE`  | a composition's frame with its components and connectors    |
-| Atomic SWC        | `ATOMIC_SW_COMPONENT_TYPE`                                             | an atomic component with its behaviour, runnables and events |
-| ECU               | `ECU_MANAGEMENT`                                                       | an ECU and what it contains                                 |
-| System            | `SYSTEM_MANAGEMENT`                                                    | a system with its ECU prototypes                            |
+| Kind        | `diagramType` from `list_diagrams`                                    | Shows                                                        |
+| ----------- | --------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Workspace   | `WORKSPACE`                                                           | other diagrams, one box per diagram; a model's home page     |
+| Composition | `COMPOSITION_SW_COMPONENT_TYPE`, `ROOT_COMPOSITION_SW_COMPONENT_TYPE` | a composition's frame with its components and connectors     |
+| Atomic SWC  | `ATOMIC_SW_COMPONENT_TYPE`                                            | an atomic component with its behaviour, runnables and events |
+| ECU         | `ECU_MANAGEMENT`                                                      | an ECU and what it contains                                  |
+| System      | `SYSTEM_MANAGEMENT`                                                   | a system with its ECU prototypes                             |
 
 `list_diagrams` can also return `RUNNABLE_ENTITY` diagrams. They have no page yet
 (`pagePath: null`): list them, but don't offer to open them.
@@ -52,9 +52,13 @@ first if it isn't open (step 2.3).
    components are hidden (next step).
 
 **Hidden boxes.** A box can be on a diagram but hidden. The canvas doesn't show it
-and the tree doesn't list it. To see all of them, click **Filter Components** in
-the toolbar at the top of the canvas. The popover lists every box with its type, and
-a checked box is visible. Close the popover without changing any checkbox.
+and the tree doesn't list it. To see them, open the frame's properties panel
+(`properties-panel.md`) on its list tab, for example **Components**: each card's
+button reads **Hide** (shown), **Show** (hidden) or **Add** (never placed on this
+diagram). Don't change anything there.
+
+The toolbar's **Filter Components** popover is not enough: it lists only boxes
+already on the canvas, so never-placed components are missing from it.
 
 **An empty diagram** shows a message on the canvas instead of boxes, for example
 "No diagrams on this workspace yet". That is the real content: report it as empty.
