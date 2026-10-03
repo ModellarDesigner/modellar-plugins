@@ -10,7 +10,12 @@ This file is a map. Other tasks point here for "open the panel on X, tab Y".
 ## Open it
 
 1. **Select** what you want to see: click the box (a frame: click its header) or
-   the connection on the canvas.
+   the connection on the canvas. A selected box shows a pink resize outline.
+   - **The click didn't select it** (no outline; with the panel open it still
+     reads "Select a node or edge to view its properties"): use the keyboard.
+     In the accessibility tree each box is a group named `"<name> – <kind>"`,
+     for example `"Kessy – Composition"`. Focus it and press **Enter**. Don't
+     click at screen positions instead: after a resize or zoom they miss.
 2. Click the button **Properties panel**: a small chevron on the right edge of the
    canvas, at mid-height. Selecting alone does **not** open the panel.
 3. The button has the same name open or closed: read its `expanded` state.
@@ -105,8 +110,9 @@ A port's side can't be changed for good in the UI (the handle menu's **Change
 Position** is unfinished); the Modellar tool `set_port_placement` does it (skill
 `modellar-ports`).
 
-Delete is not available yet for most elements: the confirm ends with the toast
-"Delete not available yet".
+Deleting isn't available yet. The **Delete …** buttons open a dialog that says so,
+lists what a delete would affect, and offers only **Delete (not available yet)**,
+disabled. Tell the user; don't look for another way.
 
 ## Traps
 

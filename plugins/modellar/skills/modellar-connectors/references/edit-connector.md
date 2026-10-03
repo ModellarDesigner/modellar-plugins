@@ -10,8 +10,9 @@ URL: `https://<host>/designer/{modelId}/...`. Take `{modelId}` from it.
 
 ## 2. Look up and check
 
-1. `search_elements({ modelId, elementType: "AssemblySwConnector", search: "<name>", includeElementData: true })`
-   (or `DelegationSwConnector`; unsure: search without `elementType`). Keep the one
+1. `search_elements({ modelId, elementType: "SwConnector", search: "<name>", includeElementData: true })`.
+   Connectors are stored as `SwConnector`; the result's `updateElementType`
+   (`AssemblySwConnector` or `DelegationSwConnector`) says the kind. Keep the one
    in the right composition.
 2. A new end? Look up the component and port as in `add-connector.md`, steps
    2.2–2.3, and check the match (step 2.4) against the end that stays.
@@ -20,11 +21,16 @@ URL: `https://<host>/designer/{modelId}/...`. Take `{modelId}` from it.
 ## 3. MCP route (default)
 
 1. **Confirm.** The connector's `qualifiedName`, each field old → new. Wait for go.
-2. `update_staged_element` with its `id`, its `elementType`, and the **complete**
-   `elementData` from `search_elements` with only the asked fields changed. A
-   moved end changes its ref **and** id fields together (see `add-connector.md`,
-   step 3.3, for which fields belong to which end). For a delegation whose inner
-   port changes direction, move the inner prototype id to the matching field.
+2. `update_staged_element` with its `id`, the `updateElementType`
+   (`AssemblySwConnector` or `DelegationSwConnector`) and the `elementData` that
+   `search_elements` returned (already in the shape the update takes), with only
+   the asked fields changed, and `expectedUpdatedAt` = its `updatedAt`. A moved
+   end changes its ref **and** id fields together (see `add-connector.md`, step
+   3.3). For a delegation whose inner port changes direction, move the inner
+   prototype id to the matching field. If a required field is missing, the
+   update says which (or the search result already lists them in
+   `updateIssues`): `parentQname` and `sourceFile` are the composition's
+   `qualifiedName` and `sourceFile`.
 3. A line already drawn for it keeps its old ends until the diagram is refreshed
    (skill `modellar-diagrams`, `refresh-diagram.md`).
 

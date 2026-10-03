@@ -18,16 +18,20 @@ URL: `https://<host>/designer/{modelId}/...`. Take `{modelId}` from it.
 ## 3. MCP route (default)
 
 1. **Confirm.** Show the port's `qualifiedName`, each field old → new. Wait for go.
-2. **Update.** `update_staged_element` with the port's `id`,
-   `elementType: "PortPrototype"`, and the **complete** `elementData`: start from
-   the one `search_elements` returned, keep `swCaqname`, `swCId`, `sourceFile`
-   and, if present, `context` and the ECU fields as they are, and change only the
-   fields asked for:
+2. **Update.** `update_staged_element` with the port's `id`, the
+   `updateElementType` and `elementData` that `search_elements` returned (with
+   `includeElementData: true` the data already comes in the shape the update
+   takes), and `expectedUpdatedAt` = its `updatedAt`. If the result also has
+   `updateIssues`, supply the fields it names (`swCaqname` / `swCId` are the
+   owning SWC's `qualifiedName` / `id`).
+
+   In that elementData, change only the fields asked for:
    - name: `shortName`;
    - direction: `direction` (`Provider`, `Receiver`, `ProviderReceiver`);
    - interface: `interfaceRef`, `interfaceId` and `interfaceRefDest` together (see
      `add-port.md`, step 3.3, for the tag);
    - text: `description`.
+
 3. The open diagram and its properties panel show the change within about 30
    seconds; no reload needed.
 

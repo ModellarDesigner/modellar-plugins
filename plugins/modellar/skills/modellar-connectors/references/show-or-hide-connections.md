@@ -59,9 +59,9 @@ Draw it from its ports, the route known to save:
 3. Click **Save Diagram** and wait for **"Diagram Saved"**.
 
 Avoid the ⋮ menu's **Show Connections** picker for this: a line drawn from it
-currently fails to save (**"Save Failed"**). The card's **Add** button (toast
-"Connector visual element created successfully") hasn't been checked against that
-failure yet: if you use it and Save Diagram says **"Save Failed"**, click **Reload
+currently fails to save (**"Save Failed"**). The Connections tab's **Show All**
+draws lines that do save; the card's **Add** button uses the same drawing and
+should too. If Save Diagram says **"Save Failed"** anyway, click **Reload
 Diagram** and use the ports route above.
 
 **One port's connections**: the Ports tab of the box → the port card's button

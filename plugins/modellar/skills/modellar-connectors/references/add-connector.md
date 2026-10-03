@@ -40,10 +40,14 @@ URL: `https://<host>/designer/{modelId}/...`. Take `{modelId}` from it.
    - **Assembly**: the providing port is `Provider` or `ProviderReceiver`; the
      requiring port is `Receiver` or `ProviderReceiver`; two different components.
    - **Delegation**: inner and outer port have the same `direction`.
-5. **Not connected yet.** `search_elements({ modelId, elementType: "AssemblySwConnector", search: "<composition qualifiedName>/", includeElementData: true })`
-   (or `DelegationSwConnector`). If one already joins the same two ports (compare
-   the port and component refs as in step 3), stop and tell the user. Also no
-   connector of the chosen name.
+5. **Not connected yet.** Connectors are **stored** as `elementType: "SwConnector"`
+   (assembly and delegation alike), whatever type staged them. Search with
+   `search_elements({ modelId, elementType: "SwConnector", search: "<port name>", includeElementData: true, limit: 50 })`:
+   connector names usually contain the ports' names. The stored ends are
+   `providerPortRef` / `requesterPortRef` (assembly) or `innerPortRef` /
+   `outerPortRef` (delegation). If one already joins the same two ports, stop
+   and tell the user. Also no connector of the chosen name. A search returns at
+   most 50: if it does, narrow it rather than conclude "none".
 6. **Name.** If the user gave none, propose the one the diagram would make:
    - assembly `Asc_<ProvComponent><ProvPort>_<ReqComponent><ReqPort>`;
    - delegation `Dc_<InnerComponent><InnerPort>_<Composition><OuterPort>`;

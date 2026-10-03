@@ -41,7 +41,10 @@ The tools write to the saved diagram. An open canvas shows the change only after
 **Reload Diagram**, and a **Save Diagram** pressed on it afterwards writes the old
 layout back over your change.
 
-So, **before** you change anything on an open diagram:
+So, **before** you change anything on an open diagram, **always ask**, even if
+nothing looks unsaved. The dock's unsaved-changes dot lights up for moved boxes
+only: shown or hidden boxes, ports and connections never light it, so "no dot"
+doesn't mean "nothing to save".
 
 1. Ask: "I'll save the diagram first so nothing you arranged is lost. OK?" Then
    click **Save Diagram** in the floating dock (or ask the user to) and wait for
@@ -118,6 +121,10 @@ overlaps Logger; want me to move Logger down?"
   first (`stage_element`), then show it here.
 - **Hiding a port hides its connections too.** Showing a connection also shows
   the ports at its ends.
+- **`which: "connected"` / `"unconnected"` look at shown connections only.** A
+  port whose connections are all hidden counts as unconnected.
+- **Results list at most 50 names.** `changedCount` (or `movedCount`, …) is the
+  exact total, and `…NotListed` says how many names were left out.
 - **Hiding a frame doesn't hide the nodes inside it.**
 - Port tools work only on composition and atomic component diagrams.
 - Moving a port with the canvas's own right-click **Change Position** is not

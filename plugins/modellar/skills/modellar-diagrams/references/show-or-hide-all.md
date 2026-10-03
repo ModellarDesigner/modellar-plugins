@@ -6,9 +6,10 @@ components of Kessy", "hide every port of BCM", "show only the hidden connectors
 kind).
 
 Showing or hiding changes only the drawing, never the model: nothing is deleted
-and the user can undo it. No confirmation is needed, with one exception: if
-**Show All** would put boxes on the diagram that were never placed (see step 3),
-tell the user how many first and wait for go.
+and the user can undo it. No confirmation is needed, except for a **big Show All**
+(step 3.3): one that creates boxes, or draws more than about 100 lines. Those are
+slow to undo and can freeze the page, so tell the user the numbers first and
+wait for go.
 
 For one single component, use task `show-component-on-diagram.md` instead.
 
@@ -97,7 +98,11 @@ asked, one click does it. When it says the opposite, use **two clicks**:
   shown, on Components, Connections or ECU Prototypes): click **Hide All**, wait for
   its toast, then click **Show All**.
 - **Hide all**, but the button reads **Show All** (at least one card is hidden, on
-  Ports or Mapping): click **Show All**, wait for its toast, then click **Hide All**.
+  Ports or Mapping): on **Ports**, set the filter **Visibility** to **Visible**,
+  so the button reads **Hide All**, click it, then clear the filter. On
+  **Mapping**: click **Show All**, wait for its toast, then click **Hide All**
+  (that draws every mapping first, so on a big ECU prefer `set_connection_visibility`
+  with `kind: "mapping"`).
 
 The end state is the same as one click would have given. Do the two clicks only
 when the one click can't do it, and always with the same filter in place, so the
@@ -105,9 +110,19 @@ first click doesn't touch cards outside the user's request.
 
 ### 3.3 Click it
 
-1. Count the cards that would be **added** (button **Add**, or "Not in diagram"):
-   **Show All** creates those boxes and saves them at once. If there are any, tell
-   the user how many and wait for go.
+1. **Before a Show All, count what it will do**, and if it's big, tell the user
+   and wait for go:
+   - **Components / ECU Prototypes**: cards with the button **Add** ("Not in
+     diagram") become new boxes, saved at once.
+   - **Connections**: every listed connector becomes a line, and a component at
+     an end that isn't on the diagram becomes a new box. The tab says how many
+     are listed ("Showing X of Y connectors").
+   - **Mapping**: every listed mapping becomes a line, and **every component it
+     maps to becomes a new box**, without any card saying so (about 60 on a
+     typical ECU).
+
+   Over about 100 lines, drawing and then saving can freeze the page for a
+   minute. Offer to narrow the list with the filter first.
 2. Click **Show All** or **Hide All**. Components and ECU prototypes show
    "Showing All…" / "Hiding All…", then the toast **"Success"** with
    "<n> components shown" (or hidden), ", <k> already in desired state",
@@ -143,11 +158,12 @@ as a fault.
   On a big composition that fills the frame with boxes. Narrow first if the user
   asked for some.
 - **Show All on Connections creates the missing connector lines** and, if an end
-  component isn't on the diagram, places it too. Lines drawn from the ⋮ menu's
-  Show Connections picker currently fail to save ("Save Failed"), and Show All
-  hasn't been checked against that yet: after it, check the Save Diagram toast. On
-  **"Save Failed"**, Reload Diagram and draw them from their ports instead (skill
-  `modellar-connectors`, `show-or-hide-connections.md`).
+  component isn't on the diagram, places it too. These lines do save (tested with
+  473 lines, after the page froze for about a minute). Lines drawn from the ⋮
+  menu's Show Connections picker are the ones that fail to save ("Save Failed").
+  Still read the Save Diagram toast: on **"Save Failed"**, Reload Diagram and draw
+  them from their ports (skill `modellar-connectors`,
+  `show-or-hide-connections.md`).
 - **Hide All on Ports shrinks the frame** to its minimum; Show All grows it back.
 - **Hiding a frame keeps its children shown**, on the canvas and through MCP.
 - **Not saved = lost.** Only newly created boxes are saved by themselves. Showing or

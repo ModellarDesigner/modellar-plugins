@@ -58,8 +58,12 @@ Which ports of which box are now shown, hidden or moved, and that it is saved.
 
 - **New box, no ports.** A component just put on a composition diagram shows none
   of its ports: that's by design, not a fault. Show the ones the user wants.
-- **Hiding a port hides its connection lines** too. Showing a connection later shows
-  its ports again.
+- **Hiding a port: the tool and the screen differ.** `set_port_visibility` hides
+  the port's connections too. The Ports tab's eye only hides the port: its line
+  stops being drawn but stays "shown", and comes back when the port is shown
+  again. To take the line away for good, hide the connection as well.
+- **"Unconnected" means no shown connection.** A port whose only connection is
+  hidden counts as unconnected for `which`.
 - **First show picks the side by direction**: provider ports on the right, receiver
   ports on the left. Move them afterwards with `set_port_placement` if asked.
 - Canvas port handles can't be focused or named by the keyboard: right-clicking one
