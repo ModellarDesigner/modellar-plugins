@@ -17,22 +17,30 @@ The composition's diagram: the URL contains
 A connector has one of three states on a diagram. The card in the **Connections**
 tab tells you by its button:
 
-| Card button | State                       | MCP can …   |
-| ----------- | --------------------------- | ----------- |
-| **Add**     | never drawn on this diagram | nothing: UI |
-| **Show**    | drawn, then hidden          | show it     |
-| **Hide**    | shown                       | hide it     |
+| Card button | State                       | MCP `set_connection_visibility` … |
+| ----------- | --------------------------- | --------------------------------- |
+| **Add**     | never drawn on this diagram | draws it (`visible: true`)        |
+| **Show**    | drawn, then hidden          | shows it                          |
+| **Hide**    | shown                       | hides it                          |
 
 Through MCP: `get_diagram_layout` lists the connections the diagram has (shown or
-hidden). A connector missing from it was never drawn: use the visual route.
+hidden). A connector missing from it was never drawn; the tool still finds it by
+name and draws it.
 
-## 3. MCP route (connections already on the diagram)
+## 3. MCP route (default)
 
 Skill `modellar-diagrams`, task `change-diagram-layout.md`: save first if the
 diagram is open, then `set_connection_visibility` with `visible` and one of
 `connections` (names), `node` (every connection of one component), `kind`
-(`assembly`, `delegation`), combined to narrow; then refresh. Showing a
-connection also shows the ports at its ends.
+(`assembly`, `delegation`), `nameContains`, combined to narrow; then refresh.
+
+- Showing a connection also shows the ports at its ends.
+- Drawing a never-drawn connector gives its ports their handles and, if a
+  component at one end isn't on the diagram, places it first. The answer lists
+  `drawn`, `placed` and `notDrawn` (with why: an end component that is not in
+  this composition, or an end port that is not on its component).
+- To take a line off the diagram rather than hide it: skill `modellar-diagrams`,
+  task `remove-from-diagram.md`.
 
 ## 4. Visual route
 

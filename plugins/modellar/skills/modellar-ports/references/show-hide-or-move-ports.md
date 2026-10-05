@@ -20,12 +20,25 @@ diagram's frame (the SWC itself) or a component box inside a composition.
 ## 2. MCP route (default)
 
 Skill `modellar-diagrams`, task `change-diagram-layout.md`: save first if the
-diagram is open, then `set_port_visibility` (show, hide; by `ports` or `which`:
-`all`, `connected`, `unconnected`) or `set_port_placement` (`side`: `left`,
-`right`, `top`, `bottom`), then refresh.
+diagram is open, then one call, then refresh:
 
-A port missing from `get_diagram_layout` was just created and never drawn on this
-diagram: use the visual route to show it.
+- `set_port_visibility` (show, hide) with `node` and `ports` (names), `which`
+  (`all`, `connected`, `unconnected`) and/or `filter` (`direction`:
+  `Provider`, `Receiver`, `ProviderReceiver`; `interface`: part of the
+  interface's name; `nameContains`). Several boxes in one call: `targets`, a
+  list of `{ node, ports | which | filter }`.
+- `set_port_placement` (`side`: `left`, `right`, `top`, `bottom`) with the same
+  `ports`, `which` or `filter`.
+
+A port never shown on this diagram has no handle yet: showing it creates one.
+`get_diagram_layout` lists only shown or connected ports by default; pass `node`
+to see all of one box's ports.
+
+A box that is not on the diagram has no ports there: place it first (skill
+`modellar-diagrams`, `show-component-on-diagram.md`).
+
+To take a port **off** a box rather than hide it: skill `modellar-diagrams`,
+task `remove-from-diagram.md`.
 
 ## 3. Visual route
 

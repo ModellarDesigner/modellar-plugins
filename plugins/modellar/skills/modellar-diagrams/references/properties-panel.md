@@ -110,9 +110,14 @@ A port's side can't be changed for good in the UI (the handle menu's **Change
 Position** is unfinished); the Modellar tool `set_port_placement` does it (skill
 `modellar-ports`).
 
-Deleting isn't available yet. The **Delete …** buttons open a dialog that says so,
+Deleting isn't available yet. The **Delete …** buttons delete the **model
+element**, not the drawing: they open a dialog that says deleting isn't available,
 lists what a delete would affect, and offers only **Delete (not available yet)**,
 disabled. Tell the user; don't look for another way.
+
+The panel has no "remove from diagram". Taking a box off a diagram is the box's ⋮
+menu **Remove from Diagram**, or the Modellar connector: task
+`remove-from-diagram.md`.
 
 ## Traps
 

@@ -21,34 +21,41 @@ kind. If the wrong diagram is open, open the right one first (task
 
 ## 2. MCP route (default)
 
-Works for what is **already on the diagram** (shown or hidden). It can't put a
-never-placed component, ECU prototype or connector on a diagram: that part needs
-the visual route.
+One call per kind, never one per item. It places never-placed components and
+draws never-drawn connectors of a **composition** too, like the panel's Show
+All. ECU prototypes (system diagram) and PDU mappings (ECU diagram) it only
+shows or hides when they are already on the diagram: place those with the visual
+route.
 
 1. `list_diagrams` → the diagram's id. `get_diagram_layout` (pass
    `ports: "none"` unless ports are the subject) → its boxes, each with
    `visible`, and its connections.
-2. Compare with the model when the user says "all": `search_elements` for the
-   frame's children (for example the composition's SW component prototypes). A
-   child that is not in the layout at all was never placed: count those for the
-   visual route.
+2. **Count before a big Show All.** A never-placed component or never-drawn
+   connector is not in the layout: count those from the model
+   (`search_elements` for the composition's SW component prototypes and
+   connectors). Creating boxes, or more than about 100 lines: tell the user the
+   numbers and wait for go (as in step 3.3).
 3. If the user has this diagram open and may have unsaved changes, ask them to
    click **Save Diagram** **before** you write. A save from the old canvas afterwards
    would overwrite your change.
 4. Write, one call per kind:
-   - boxes: `set_node_visibility` with `nodes` (names, up to 100) and `visible`.
-     Hiding a frame does not hide the boxes inside it: hide those by name.
-   - ports of one box: `set_port_visibility` with `node` and `which`
-     (`all`, `connected`, `unconnected`) or `ports`, and `visible`. Composition and
-     atomic diagrams only. Hiding ports also hides their connections.
+   - boxes: `set_node_visibility` with `frame` (every component inside it,
+     placed or not) or `nodes` (names, up to 100), optionally `nameContains`,
+     and `visible`. Hiding a frame does not hide the boxes inside it: use
+     `frame` for those.
+   - ports: `set_port_visibility` with `node` and `which` (`all`, `connected`,
+     `unconnected`), `ports` or `filter` (`direction`, `interface`,
+     `nameContains`), and `visible`; several boxes at once with `targets`.
+     Composition and atomic diagrams only. Hiding ports also hides their
+     connections.
    - connections: `set_connection_visibility` with `all: true`, or `kind`
-     (`assembly`, `delegation`, `mapping`), or `node`, or `connections`, and
-     `visible`. Showing a connection also shows the ports at both of its ends.
-5. Each result lists `changed` and `unchanged`. Then the open canvas must be
-   refreshed to show it: task `refresh-diagram.md` (it was saved first, so nothing
-   is lost).
-6. Never-placed children left over (step 2)? Do the visual route for them, with the
-   **Visibility: Hidden** filter, or tell the user how many remain.
+     (`assembly`, `delegation`, `mapping`), `node`, `nameContains` or
+     `connections`, and `visible`. Showing a connection also shows the ports at
+     both of its ends; showing a never-drawn one draws it.
+5. Each result lists `changed`, `unchanged` and what it created (`created` for
+   boxes, `drawn` and `placed` for connections, `notDrawn` with the reason).
+   Then refresh the open canvas: task `refresh-diagram.md` (it was saved first,
+   so nothing is lost).
 
 ## 3. Visual route
 
@@ -123,6 +130,7 @@ first click doesn't touch cards outside the user's request.
 
    Over about 100 lines, drawing and then saving can freeze the page for a
    minute. Offer to narrow the list with the filter first.
+
 2. Click **Show All** or **Hide All**. Components and ECU prototypes show
    "Showing All…" / "Hiding All…", then the toast **"Success"** with
    "<n> components shown" (or hidden), ", <k> already in desired state",
@@ -172,3 +180,5 @@ as a fault.
   state.
 - **MCP writes don't reach an open canvas** until **Reload Diagram**, and a save
   from the old canvas afterwards overwrites them.
+- **Hide is not remove.** Hiding keeps the box, port or line (and its place) on
+  the diagram. To take it off the diagram, task `remove-from-diagram.md`.

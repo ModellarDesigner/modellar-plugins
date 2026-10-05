@@ -1,6 +1,6 @@
 ---
 name: modellar-connectors
-description: Create, change, show and hide AUTOSAR connectors in the ModellAR Designer web app - assembly connectors (wire a provider port of one component to a receiver port of another inside a composition) and delegation connectors (wire an inner component's port to the composition's own port). Use when the user, on a ModellAR Designer page (URL contains /designer/), asks to connect, wire, link, hook up or route two components or ports, add, create, edit or rename a connector or connection, or show or hide connections on a composition diagram.
+description: Create, change, show and hide AUTOSAR connectors in the ModellAR Designer web app - assembly connectors (wire a provider port of one component to a receiver port of another inside a composition) and delegation connectors (wire an inner component's port to the composition's own port). Use when the user, on a ModellAR Designer page (URL contains /designer/), asks to connect, wire, link, hook up or route two components or ports, add, create, edit or rename a connector or connection, or show, hide or remove connections on a composition diagram.
 ---
 
 # ModellAR: connectors
@@ -50,7 +50,8 @@ Read the task file before you start. Read only the ones you need.
 | show or hide some connections on the composition diagram  | `references/show-or-hide-connections.md` |
 
 Showing or hiding **all** connections: skill `modellar-diagrams`, task
-`show-or-hide-all.md`. The properties panel and its tabs: skill
+`show-or-hide-all.md`. Taking lines off a diagram (not hiding): skill
+`modellar-diagrams`, task `remove-from-diagram.md`. The properties panel and its tabs: skill
 `modellar-diagrams`, `properties-panel.md`.
 
 ## Common chains

@@ -68,7 +68,7 @@ For when the user asks to do it in the UI, or the MCP route isn't available.
 1. Get onto the composition's diagram (skill `modellar-diagrams`, task
    `open-or-create-swc-diagram.md`).
 2. Open the **Components** panel as described in task
-   `show-component-on-diagram.md`, section 2.
+   `show-component-on-diagram.md`, section 3.
 3. **Check for duplicates.** If the instance name is already in the list, stop and
    tell the user.
 4. Click **Add Component**. If the list is empty, the button reads **Add your
@@ -86,7 +86,7 @@ For when the user asks to do it in the UI, or the MCP route isn't available.
 Success shows the toast **"Component prototype created successfully."** The new card
 has the footer button **Add** (its grey status icon's tooltip reads "Not in diagram").
 To show it, continue with task
-`show-component-on-diagram.md`, section 4.
+`show-component-on-diagram.md`, section 5.
 
 ## 5. Report
 

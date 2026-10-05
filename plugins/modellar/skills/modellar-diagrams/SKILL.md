@@ -1,6 +1,6 @@
 ---
 name: modellar-diagrams
-description: List, describe, open, find and create diagrams in the ModellAR Designer web app (workspace, composition, atomic SWC, ECU and system diagrams), choosing the right diagram kind from the component's type. Use when the user, on a ModellAR Designer page (URL contains /designer/), asks which diagrams exist, what is on a diagram or canvas, to add a diagram to a workspace, to show all / hide all / filter components, ports or connections, or to open, show, go to, jump to, draw or create the diagram of a named SWC, composition or component; or to arrange a diagram: lay it out, tidy it, move, place, align or resize boxes, show or hide components, ports, port labels or connections, move ports to another side, change the line style or animation, or find and zoom to an element.
+description: List, describe, open, find and create diagrams in the ModellAR Designer web app (workspace, composition, atomic SWC, ECU and system diagrams), choosing the right diagram kind from the component's type. Use when the user, on a ModellAR Designer page (URL contains /designer/), asks which diagrams exist, what is on a diagram or canvas, to add a diagram to a workspace, to show all / hide all / filter components, ports or connections, or to open, show, go to, jump to, draw or create the diagram of a named SWC, composition or component; or to arrange a diagram: lay it out, tidy it, move, place, align or resize boxes, show or hide components, ports, port labels or connections, move ports to another side, change the line style or animation, or find and zoom to an element; or to remove, take off or delete components, boxes, ports or connections from a diagram (the drawing only, not the model).
 ---
 
 # ModellAR: diagrams
@@ -37,6 +37,7 @@ Read the task file before you start. Read only the ones you need.
 | refresh the open diagram, to see what was added elsewhere                                           | `references/refresh-diagram.md`            |
 | put a diagram on a workspace, or open one from a workspace                                          | `references/add-diagram-to-workspace.md`   |
 | move, resize or place nodes by name; show or hide nodes, ports or connections; move ports to a side | `references/change-diagram-layout.md`      |
+| take components, ports or connections off a diagram (not hide, not delete from the model)           | `references/remove-from-diagram.md`        |
 | lay out or tidy the whole diagram, fit every box, labels, line style, animation, find an element    | `references/use-diagram-toolbar.md`        |
 
 Every diagram's **properties panel** (the tabs on the right of the canvas) is

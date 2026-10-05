@@ -5,7 +5,9 @@ composition's diagram. Adding the component to the composition and showing it on
 the diagram are separate steps: a new component is created **hidden**, and the
 diagram shows it only after this task.
 
-No Modellar tool places nodes yet, so this task always uses the UI.
+The Modellar connector does it in one call (section 2); the panel route
+(sections 3 to 5) is for when the user asks to see it done, or the tools aren't
+connected.
 
 ## 1. Where am I?
 
@@ -14,7 +16,24 @@ You must be on the composition's diagram: the URL contains
 composition's name with "Composition" underneath. If not, open it first (task
 `open-or-create-swc-diagram.md`).
 
-## 2. Open the Components panel
+## 2. MCP route (default)
+
+1. `list_diagrams` with the composition's id (from `search_elements`) → the
+   diagram's id.
+2. If the diagram is open in the user's tab, save first (skill
+   `modellar-diagrams`, `change-diagram-layout.md`, step 3).
+3. `set_node_visibility` with `diagramId`, `nodes: ["<component name>"]` and
+   `visible: true`. The name is the SW component prototype's short name.
+   - `created`: the component was never on this diagram; it now has a box in a
+     free spot of the frame, with its ports hidden.
+   - `changed`: it was hidden; it is shown again where it was.
+   - `unchanged`: it was already shown. Tell the user.
+   - "No node or component named …": it isn't in this composition (or the name
+     is spelled differently). Check with `search_elements`.
+4. Refresh the open diagram (`refresh-diagram.md`). Offer to show its ports
+   (skill `modellar-ports`, `show-hide-or-move-ports.md`).
+
+## 3. Visual route: open the Components panel
 
 1. On the canvas, click the big **frame** whose header shows the composition's
    name. It's the outer box that contains the other components. This selects it.
@@ -25,7 +44,7 @@ composition's name with "Composition" underneath. If not, open it first (task
 3. In the panel, click the tab **Components**. The tabs are Properties, Ports,
    Components, Connections. You now see "SW Component Prototypes".
 
-## 3. Find the component's card
+## 4. Find the component's card
 
 Find the card with the component's name. Its footer button tells you its state.
 The button's name includes the component's name:
@@ -43,7 +62,7 @@ The button's name includes the component's name:
   there, tell the user: it may belong to another composition, or the list may be
   filtered (see Traps).
 
-## 4. Show it
+## 5. Show it
 
 Click the button **once**. It is disabled while it works, and afterwards it reads
 **Hide**: a second click would hide the component again.
@@ -61,7 +80,7 @@ user can hide it again.
 Don't use **Show All** unless the user asks. It reveals every hidden component, not
 just this one. For many at once, use task `show-or-hide-all.md`.
 
-## 5. Report
+## 6. Report
 
 Tell the user the component is now shown on the diagram, inside the composition's
 frame.

@@ -1,6 +1,6 @@
 ---
 name: modellar-ports
-description: Create, change, show, hide and move AUTOSAR ports (port prototypes) of software components in the ModellAR Designer web app - provider, receiver and provider/receiver ports with their port interface. Use when the user, on a ModellAR Designer page (URL contains /designer/), asks to add, create, define, rename or edit a port, change a port's interface or direction, or show, hide, reveal or move (left, right, top, bottom) the ports of an SWC, composition or component on a diagram.
+description: Create, change, show, hide and move AUTOSAR ports (port prototypes) of software components in the ModellAR Designer web app - provider, receiver and provider/receiver ports with their port interface. Use when the user, on a ModellAR Designer page (URL contains /designer/), asks to add, create, define, rename or edit a port, change a port's interface or direction, or show, hide, reveal, remove from a diagram or move (left, right, top, bottom) the ports of an SWC, composition or component on a diagram.
 ---
 
 # ModellAR: ports
@@ -50,7 +50,8 @@ Read the task file before you start. Read only the ones you need.
 | show, hide or move (side) some ports of a box on a diagram | `references/show-hide-or-move-ports.md` |
 
 Showing or hiding **all** ports of a box: skill `modellar-diagrams`, task
-`show-or-hide-all.md`. The properties panel and its tabs: skill
+`show-or-hide-all.md`. Taking ports off a diagram (not hiding): skill
+`modellar-diagrams`, task `remove-from-diagram.md`. The properties panel and its tabs: skill
 `modellar-diagrams`, `properties-panel.md`. Wiring two ports together: skill
 `modellar-connectors`.
 
