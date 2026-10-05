@@ -8,14 +8,13 @@ show the user the table of one element type with a filter applied.
 - `search_elements({ modelId, elementType: "<type>", search: "<part of a name>", limit: 50 })`.
   `search` matches a part of the short name or of the qualified name, ignoring
   case, also inside words: "CHR" finds "Syn**chr**on…". Prefer a whole name or a
-  prefix with `_` ("CHR_"). Leave out `elementType` to search every type. Add
-  `includeElementData: true` when you need field values (a data type's category, a
-  runnable's interval), but only on a narrow search: just the first 10 results
-  carry them, and a wide search with data can be too big to read.
-- At most 50 results, newest first, with **no paging**. `count` is the number
-  returned, not the total. When you get exactly the `limit`, there may be more:
-  narrow the search, or count in the table instead (its summary line shows the
-  total).
+  prefix with `_` ("CHR_"); `_` and `%` are plain characters. Leave out
+  `elementType` to search every type. Add `includeElementData: true` when you need
+  field values (a data type's category, a runnable's interval): only the first 10
+  results of a call carry them, so page with `limit: 10`.
+- At most 50 results per call, newest first. `totalCount` is how many match and
+  `count` how many came back; when `nextOffset` is not null there are more: call
+  again with `offset: <nextOffset>`, until it is null.
 - **Children of an element, or everything in a package:**
   `qualifiedNamePrefix` with the parent's qualified name **followed by `/`** (a
   child's qualified name starts with it), or the package path. Example:

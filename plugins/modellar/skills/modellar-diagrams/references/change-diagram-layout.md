@@ -23,14 +23,20 @@ Call `get_diagram_layout` with the `diagramId`. You get:
 - **nodes**: name, id, parent frame, `x`/`y` relative to that frame, `width`,
   `height`, `visible`;
 - each node's **ports**: name, side, `visible`, `connected` (has a connection on
-  this diagram, shown or hidden);
+  this diagram, shown or hidden), `interface` (its qualified name;
+  `interfaceFound: false` when that interface is not in the model);
 - **connections**: name, kind (`assembly`, `delegation`, `mapping`), the node
   and port at each end, `visible`.
 
 A frame can have hundreds of ports, so only the ports that are shown or
 connected are listed; each node says how many it left out (`portsLeftOut`). To
 see every port of one node, call it again with `node` (that node only, all its
-ports). `ports: "none"` gives the boxes only.
+ports). `ports: "none"` gives the boxes only. On a big composition, add
+`connectionKind` (`assembly`, `delegation` or `mapping`) to read only the
+connections of one kind.
+
+A connection has no interface of its own. To check that a connection is right,
+compare the `interface` of the ports at its two ends.
 
 Find what the user named. If a name matches several nodes, ask which one; the
 tools refuse to guess and list the candidates.

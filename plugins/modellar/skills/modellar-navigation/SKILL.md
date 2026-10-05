@@ -16,18 +16,25 @@ Pick the first way that applies:
    (configuration lists, "New …" create pages, ARXML Management, Analytics,
    Validation). Choose one with the arrow keys and press **Enter**.
    Element results appear after a short pause and need at least 2 characters.
-2. **Outside a model:** click the sidebar link: **Dashboard**, **Projects**,
-   **Users**, **Profile**, **API reference**, **Element Workflow**.
+2. **Outside a model:** for an app page, click the sidebar link: **Dashboard**,
+   **Projects**, **Users**, **Profile**, **API reference**, **Element Workflow**.
    **Into a model** (the Dashboard has no model links, and the designer has no
-   model switcher): sidebar **Projects** → click the project's card → the tab
-   **Models** (table **AUTOSAR Models**) → click the model's name. It opens the
-   model's workspace diagram, by id.
-3. **By address** (the addresses below): only when neither works, e.g. there is no
-   **Go to…** button yet, or the user isn't in ModellAR at all.
+   model switcher):
+   - **When a Modellar tool already gave you the page** (the `pagePath` of
+     `list_diagrams` or `search_elements`), open that address directly. It loads
+     the app once, which is quicker than the four clicks below, and lands on the
+     exact diagram or element.
+   - Otherwise: sidebar **Projects** → click the project's name on its card (the
+     `projectName` from `list_accessible_models` says which card) → the tab
+     **Models** (table **AUTOSAR Models**) → click the model's name. It opens the
+     model's workspace diagram, by id.
+3. **By address** (the addresses below): when a tool gave you a `pagePath` (see 2),
+   when there is no **Go to…** button yet, or when the user isn't in ModellAR at all.
 
 **Why not always the address bar?** Typing an address reloads the whole app: every
 list and diagram is fetched again, which is slow. Go to… and the sidebar change the
-page without a reload.
+page without a reload. Inside a model that saving wins; from outside one, a single
+address beats several page changes.
 
 **Leaving a diagram loses unsaved layout**, whichever way you leave. On every kind of
 diagram, moved or resized boxes are saved only by **Save Diagram** (toast **"Diagram
