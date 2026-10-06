@@ -1,7 +1,7 @@
 {
   "name": "modellar-plugins",
   "owner": {
-    "name": "angouanga"
+    "name": "ModellarDesigner"
   },
   "description": "Claude plugins for the ModellAR Designer",
   "plugins": [
