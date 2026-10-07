@@ -13,12 +13,12 @@ the connector by default, and the UI when you ask for something to be done visua
 **Claude Code**
 
 ```
-/plugin marketplace add ModellarDesigner/modellar-plugins
+/plugin marketplace add angouanga/modellar-plugins
 /plugin install modellar@modellar-plugins
 ```
 
 **claude.ai, Claude Desktop, Cowork:** Customize → Plugins → **Add marketplace** →
-`ModellarDesigner/modellar-plugins`, then install **modellar**.
+`angouanga/modellar-plugins`, then install **modellar**.
 
 ## Keep it updated
 

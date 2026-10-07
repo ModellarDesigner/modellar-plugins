@@ -2,9 +2,9 @@
   "name": "modellar",
   "displayName": "ModellAR Designer",
   "description": "Teaches Claude how to use the ModellAR Designer: components, diagrams and more, with the Modellar MCP connector",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "author": {
-    "name": "ModellarDesigner"
+    "name": "angouanga"
   },
-  "repository": "https://github.com/ModellarDesigner/modellar-plugins"
+  "repository": "https://github.com/angouanga/modellar-plugins"
 }
