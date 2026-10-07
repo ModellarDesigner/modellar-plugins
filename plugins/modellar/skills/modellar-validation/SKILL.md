@@ -44,3 +44,6 @@ is missing. To open a page, use skill `modellar-navigation`.
 | The user wants to …                                                          | Read                                    |
 | ---------------------------------------------------------------------------- | --------------------------------------- |
 | know if an element or composition is valid, why it failed, or to validate it | `references/check-or-run-validation.md` |
+
+To save the issues as an Excel file, use skill `modellar-exports`, task
+`export-a-file.md`.
