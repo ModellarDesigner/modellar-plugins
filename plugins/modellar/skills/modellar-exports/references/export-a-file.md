@@ -4,10 +4,10 @@ Get a model's analytics (PDF report or Excel workbook) or its validation issues
 (Excel) into a file on the user's computer, by handing them a download link or
 by using the page's Export button.
 
-| Export              | Formats     | Filters | Page and control                                                                 |
-| ------------------- | ----------- | ------- | -------------------------------------------------------------------------------- |
-| `model-analytics`   | pdf, xlsx   | none    | **Model Analytics** page: **Export** (top right) → **PDF report** / **Excel workbook** |
-| `validation-issues` | xlsx        | yes     | **Validation Dashboard**, card **Validation Issues**: **Export to Excel**, next to **Add Filter** |
+| Export              | Formats   | Filters | Page and control                                                                                  |
+| ------------------- | --------- | ------- | ------------------------------------------------------------------------------------------------- |
+| `model-analytics`   | pdf, xlsx | none    | **Model Analytics** page: **Export** (top right) → **PDF report** / **Excel workbook**            |
+| `validation-issues` | xlsx      | yes     | **Validation Dashboard**, card **Validation Issues**: **Export to Excel**, next to **Add Filter** |
 
 - **PDF report:** one section per page (Overview, Components, Ports, Interfaces,
   Behavior) with headline figures, bar charts and tables. A long table is cut in
@@ -41,7 +41,10 @@ by using the page's Export button.
    - validation issues: `export: "validation-issues"`, `format: "xlsx"`. Add
      `filters` only for what the user asked:
      `{ severity: ["error"|"warning"|"info"], elementType: ["PortPrototype"], component: ["<component or interface short name>"], batchId: [...], sourceFile: [...], search: "<text>" }`.
-     Values must be exact, or the file comes out empty (no error):
+     Values must be exact, or the file comes out empty. The answer's
+     `matchingIssueCount` says how many issues the file will hold; when it is 0
+     there is also a `warning`: fix the values (from these sources) before
+     handing over the link:
      - element type: as `list_validation_issues` shows it (`elementType`);
      - component: the owning component's or interface's short name
        (`search_elements`);
@@ -49,7 +52,8 @@ by using the page's Export button.
      - source file: no tool lists them. Ask the user for the path, or let them
        pick it under **Add Filter** on the page and use **Export to Excel**.
 4. **Hand it over.** The answer has `downloadPath` (relative to the ModellAR host,
-   like `pagePath`):
+   like `pagePath`). Tell the user it can take a while: from a few seconds up to
+   about 3 minutes on a large model (tens of thousands of issues).
    - If you drive the user's browser: open `downloadPath` on the ModellAR host
      their tab is on. The browser downloads or asks where to save it.
    - Otherwise: give the full link (`https://<their ModellAR host>` +
@@ -64,12 +68,16 @@ by using the page's Export button.
 2. **Analytics:** click **Export** (top right) and choose **PDF report** or
    **Excel workbook**.
 3. **Validation issues:** set the filters first, if the user wants only some issues
-   (**Add Filter**; the chips under the card title show what is set, **Clear all**
-   removes them). Then click **Export to Excel**.
-4. The button shows **Exporting…** while the file is built. In Chrome and Edge, a
-   **Save As** dialog opens first: the user picks the folder and name. In other
-   browsers, the file goes to the downloads folder. The toast **File saved**
-   confirms it. **Export failed** shows the reason.
+   (**Add Filter**). Next to **Active filters:** a chip per filter shows how many
+   values are set, e.g. **Severity: 1**, not the values themselves; **Clear all**
+   removes them. Then click **Export to Excel**.
+4. In Chrome and Edge, a **Save As** dialog opens first: the user picks the
+   folder and name, and nothing is built until they click **Save**. The button
+   shows **Exporting…** from the click on, so also while the dialog is still
+   open; after **Save**, building the file takes from a few seconds up to about
+   3 minutes on a large model. In other browsers there is no dialog,
+   and the file goes to the downloads folder. The toast **File saved** confirms
+   it; **Export failed** shows the reason and stays until it is closed.
 
 ## Report
 
@@ -79,6 +87,15 @@ page button they can use next time.
 
 ## Traps
 
+- **Exports of large models are slow,** up to about 3 minutes. Don't wait for
+  one inside a single tool call or script that times out: start it, then check
+  the toast (or ask the user) afterwards.
+- **"Export failed" can be temporary** (the server was busy). Try once more
+  before reporting it. "The file arrived incomplete" means the download broke
+  and nothing was saved; trying again is the fix.
+- **The file name says what it holds:** validation exports are named after the
+  filters and the time, e.g. "Brake validation issues (errors, Kessy)
+  2026-10-08 1432.xlsx".
 - **A link from the tool can't be opened by you.** It needs the user's signed-in
   browser. Don't retry it, and don't call it a failure.
 - **The file is built when the link is opened,** so it is current at that moment,
