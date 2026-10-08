@@ -48,7 +48,8 @@ again. Afterwards, send the user to the System Description page and have them pr
 1. Click **New PDU**. Dialog **New PDU**.
 2. **Name**, **Length (bytes)**, **PDU type**, **Controller**.
 3. **Frame (optional)** and **System (optional)**: searchable lists. Type part of a
-   name, or of the file name shown under it, then click the row.
+   name, or of the second line under it (a frame's path, a system's file name),
+   then click the row. The chosen row shows that second line too.
 4. Summarise and wait for go. Click **Create**. Toast **PDU created**; the new PDU's
    row opens.
 
@@ -66,8 +67,8 @@ again. Afterwards, send the user to the System Description page and have them pr
 **Edit**
 
 - **Edit PDU**: the pencil in the opened row's header (named "Edit PDU <PDU>").
-  Name, type, length, **System**, **Frame**; **Save**. Choosing **No system** removes
-  the PDU's system link.
+  Name, type, length, **System**, **Frame**; **Save**. Toast **PDU updated**.
+  Choosing **No system** removes the PDU's system link. Don't rename: see Traps.
 - **Edit a signal**: the pencil on the signal's line (named "Edit <signal>"). Dialog
   **Edit signal**; **Save**.
 
@@ -80,7 +81,16 @@ bit length). Offer the next step: signals, then who sends and receives it
 ## Traps
 
 - Length units: the PDU in **bytes**, signals in **bits**. 8 bytes = bits 0–63.
+- **Renaming a PDU loses its links** (known, not fixed yet): its system, frame
+  and ECU ports find the PDU by its old name, so after a rename it has no system
+  and its transmitters and receivers vanish from the table. The Edit PDU dialog
+  warns when the name changes. Don't rename a PDU unless the user insists after
+  hearing this; `update_staged_element` on a PDU's `shortName` does the same
+  damage. If it happened: choose the system and the frame again in Edit PDU,
+  then assign the ECUs again.
 - Escape or a click outside does **not** close a dialog that holds input: use
   **Cancel**.
 - Deleting a PDU or signal isn't possible yet. **Delete <PDU>** (trash icon) only
   shows what a delete would affect; `get_deletion_impact` gives the same list.
+  Neither lists the PDU's interfaces, system link, frame mapping, ports or
+  connections (they refer to it by name); the dialog says so under the list.

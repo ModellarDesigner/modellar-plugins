@@ -7,8 +7,10 @@ PDUs of an ECU or a system; list the systems and where each ECU is placed.
 
 - Standalone page: `https://<host>/designer/{modelId}/configuration/system-description`,
   heading **System Description**.
-- On an ECU, system or workspace diagram the dock button **System Description** opens
-  the same editor as a panel, **view only** at first.
+- On an ECU, system or workspace diagram the dock button that shows **PDU** (its
+  name and tooltip: **System Description**) opens the same editor as a panel,
+  view only at first: press **Edit** to change things (it then reads **View
+  only**).
 - Two tabs: **PDU based** (one row per PDU) and **ECU based** (per ECU, the PDUs it
   sends and receives).
 
@@ -18,11 +20,14 @@ PDUs of an ECU or a system; list the systems and where each ECU is placed.
    the same `shortName`: show the user the `qualifiedName`s and ask which.
 2. **That PDU in full**: `get_pdu({ modelId, pduId })`. It returns:
    - `signals`, sorted by `startBit`, each with `startBit`, `bitLength` and `endBit` in
-     **bits**;
+     **bits**. A signal stored without a position has `startBit` and `endBit`
+     `null`: report it as having no position, never as bit 0;
    - `lengthBytes` (**bytes**), `system` (name, file), `frame`, `busType`;
    - `transmitters` and `receivers`: ECU names, their port, and `placedInSystem`;
    - `missing`: what the PDU still lacks (`system`, `frame`, `transmitter`,
-     `receiver`, `signals`).
+     `receiver`, `signals`, `signalPositions` = a signal has no start bit or
+     length).
+   - Every system comes with its `sourceFile`: name it with the system.
 3. **The PDUs of an ECU**: `list_ecus({ modelId, search: "<ECU name>" })` for its id,
    then `list_pdus({ modelId, ecuId, direction: "tx" })` (sent) or `"rx"` (received).
 4. **The PDUs of a system**: `list_systems({ modelId })` for its id (several
@@ -40,8 +45,10 @@ ECUs...**.
 1. Open the editor (section 1).
 2. Type the PDU's name into **Search PDUs, frames, ECUs...**. The table filters as you
    type.
-3. Click **Expand** on its row: the row shows the PDU's bit layout and its signals.
-   The columns show **Transmitting ECUs** and **Receiving ECUs**.
+3. Click **Expand** on its row: the row shows the PDU's bit layout and its signals,
+   sorted by start bit. A signal without a start bit shows "—" and isn't drawn;
+   a note above the layout counts them. The columns show **Transmitting ECUs** and
+   **Receiving ECUs**.
 4. For one ECU's PDUs, open the **ECU based** tab and search the ECU's name.
 5. Changes made elsewhere (MCP, another tab) show after **Refresh** (top right; its
    icon spins while it reloads).

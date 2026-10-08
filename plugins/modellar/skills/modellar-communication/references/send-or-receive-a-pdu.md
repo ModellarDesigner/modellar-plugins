@@ -37,11 +37,14 @@ the visual route).
    (or receiving).
 2. **ECU**: searchable list of the ECUs placed in the PDU's system. Opened from an
    ECU diagram, that diagram's ECU is already chosen when it is placed there. When
-   it isn't, the dialog says "<ECU>, this diagram's ECU, is not placed in <system>."
-   with a button **Place <ECU> in <system>**: summarise, wait for go, click it. Toast
-   **ECU placed in the system**, then the ECU is chosen.
+   it isn't, the dialog says "<ECU>, this diagram's ECU, is not placed in <system>
+   (<file>)." with a button **Place <ECU> in <system> (<file>)**: summarise, wait
+   for go, click it. Toast **ECU placed in the system**, then the ECU is chosen.
+   Two ECUs can share a name ("BCM"): each row shows the ECU's path under its
+   name, and so does the chosen one. Check the path before **Assign**.
 3. An empty list says why: the PDU has no system, or no ECU is placed in it.
-4. Summarise and wait for go. Click **Assign**. Toast **Assignment added**, or
+4. Summarise and wait for go. Click **Assign**. It takes a few seconds (the button
+   spins). Toast **Assignment added**, or
    **Assignment added — connection created** (one connection), or **Assignment added
    — N connections created**. The ECU appears in the column. A toast description
    names ECUs on the other side that weren't connected.
