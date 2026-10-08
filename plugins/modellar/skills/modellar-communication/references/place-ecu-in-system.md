@@ -20,7 +20,9 @@ that system's PDUs. This is why an ECU is missing from **Add transmitting ECU**.
 4. Summarise ("place ECU X in system S, file F") and wait for go.
 5. `place_ecu_in_system({ modelId, batchId, ecuId, systemId })`. It fills every
    reference itself. When the ECU is already there it answers `alreadyPlaced: true`
-   and stages nothing.
+   and stages nothing. When another ECU of the same name is already placed in the
+   system, the new placement is named `<ECU>_1` (then `_2` …): its `qualifiedName`
+   in the answer says which.
 
 ## 3. Visual route
 
@@ -40,6 +42,7 @@ PDU (`send-or-receive-a-pdu.md`).
 ## Traps
 
 - Several systems are called "CanSystem": place the ECU in the PDU's own system (its
-  file), or it still can't be picked.
+  file), or it still can't be picked. `list_ecus` gives each placement's
+  `systemSourceFile`.
 - `stage_element` with `EcuInstancePrototype` needs seven reference fields, two of
   them duplicates: use `place_ecu_in_system` instead.
